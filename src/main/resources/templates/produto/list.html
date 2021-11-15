@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao}">
+<head>
+</head>
+<body>
+<section id="advertisement">
+    <div class="container">
+        <img src="images/shop/advertisement.jpg" alt=""/>
+    </div>
+</section>
+<section layout:fragment="conteudo">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="left-sidebar">
+                    <div th:replace="layout/fragments/category :: category(${categorias})"></div>
+                    <div th:replace="layout/fragments/marcas :: marcas"></div>
+                    <div th:replace="layout/fragments/price-range :: price-range"></div>
+
+                    <div class="shipping text-center">
+                        <img th:src="@{/images/home/logo.png}" alt=""/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <h2 class="title text-center">Produtos em destaque</h2>
+                    <div th:replace="layout/fragments/product :: product(${produtos})"></div>
+                </div>
+                <nav>
+                    <ul class="pagination" th:if="${produtos.totalPages > 0}">
+                        <li class="page-item" th:classappend="${pageNumber==produtos.number + 1} ? active"
+                            th:each="pageNumber: ${pageNumbers}">
+                            <a class="page-link" th:href="@{/(size=${produtos.size}, page=${pageNumber})}"
+                               th:text="${pageNumber}"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<th:block layout:fragment="javascript">
+    <script type="text/javascript" th:src="@{/js/produto.js}"></script>
+    <script>
+        $(document).ready(function() {
+            $("#searchBtn").on("click",function(){
+                let filterVal = $('#searchBar').val();
+                filtrar(filterVal);
+            });
+        });
+    </script>
+</th:block>
+
+</body>
+</html>
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <link href="css/estilo.css" rel="stylesheet">-->
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.0.3/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-datepicker/1.9.0/dist/css/bootstrap-datepicker.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/sweetalert2/10.15.5/dist/sweetalert2.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/Font-Awesome/4.3.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/animate.css/4.1.1/animate.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/css/price-range.css}" />
+    <link rel="stylesheet" th:href="@{/css/responsive.css}" />
+
+    <link rel="shortcut icon" th:href="@{/images/ico/favicon.ico}"/>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png"/>
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png" />
+
+
+
+    </script>
+
+</head>
+<body>
+
+
+<H1>Pedido personalizado</H1>
+
+<form>
+    <div class="mb-3">
+        <label  class="form-label">Id</label>
+        <input type="text" class="form-control" id="id" aria-describedby="emailHelp">
+           </div>
+    <div class="mb-3">
+        <label  class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome">
+    </div>
+
+    <div class="mb-3">
+        <label  class="form-label">Imagem</label>
+        <input type="text" class="form-control" id="imagem">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Valor</label>
+        <input type="text" class="form-control" id="valor">
+    </div>
+
+
+    <button type="button" class="btn btn-default add-to-cart"
+            th:attr="onclick=|adicionarProduto('${id}', '${nome}',
+         '${imagem}', '${valor}')|">
+        <i class="fa fa-shopping-cart"></i>Adicionar ao carrinho</button>
+</form>
+
+
+</body>
+</html>

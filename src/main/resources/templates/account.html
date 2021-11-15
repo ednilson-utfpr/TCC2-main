@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao}">
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                             alt="foto_pessoa"/>
+                        <div class="file btn btn-lg btn-primary">
+                            Carregar foto
+                            <input type="file" name="file"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5 sec:authentication="name" style="margin-top: 40px">Kshiti Ghelani</h5>
+                        <h6 >Seja bem-vindo!!!</h6>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                   aria-controls="home" aria-selected="true">Pedidos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                                   aria-controls="profile" aria-selected="false">Dados</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+
+                        <p>AJUDA</p>
+                        <a href="">FAQ</a><br/>
+                        <a href="">Contato</a><br/>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade active in" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="lista-pedidos col-md-9" th:if="${pedidos != null}">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Nº do Pedido</th>
+                                        <th>Data</th>
+                                        <th>Pagamento</th>
+                                        <th>Valor Total</th>
+                                        <th>Situação</th>
+                                        <th>Detalhes</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:each="pedido : ${pedidos}">
+                                    <tr class="table-active">
+                                        <td th:value="${pedido.id}" th:text="${pedido.id}">1</td>
+                                        <td th:text="${pedido.dataPedido}">1</td>
+                                        <td th:text="${pedido.tipoPagamento}">1</td>
+                                        <td th:text= "|  R$: ${pedido.valorTotal}|">1</td>
+                                        <td th:text="${pedido.situacao.descricao}">1</td>
+                                        <td>
+                                          <a th:href="@{/pedidoItem/pedido/{id}(id=${pedido.id})}"
+                                               class="btn btn-primary btn_add"> <i class="fa fa-plus ml-2"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div th:if="${pedidos == null}"
+                                 class="jumbo-fluid display-4 text-center text-dark bg-light">
+                                Você ainda não tem pedidos <i
+                                    class="fa fa-frown-o"></i></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div th:if="${cliente != null}">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Nome</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.nome}">10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>CPF</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.cpf}">Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Telefone</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.telefone}">10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Endereço</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.endereco}">10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Bairro</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.bairro}">10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Cidade</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.cidade}">10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Estado</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.estado}">10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>CEP</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.cep}">10$/hr</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:if="${cliente == null}"
+                                 class="jumbo-fluid display-4 text-center text-dark bg-light">
+                                Você ainda não é cliente <i
+                                    class="fa fa-frown-o"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+</body>
+
+<th:block layout:fragment="javascript">
+    <script>
+        $(document).ready(function () {
+            $("#search-div").hide();
+        });
+
+        $('#listaPedidoItems').on('show.bs.modal', function (event) {
+            const button = $(event.relatedTarget) // Button that triggered the modal
+            let pedidoId = button.parent().parent()[0].children[0].getAttribute('value');
+            var modal = $(this)
+            modal.find('.modal-title').text('New message to ' + pedidoId)
+            // modal.find('.modal-body input').val(recipient)
+        })
+
+        function retrievePedidoItems() {
+            var url = '/pedidoItem/pedido/1';
+            $("#resultsBlock").load(url);
+        }
+    </script>
+</th:block>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/account.css}"/>
+</th:block>
+
+</html>

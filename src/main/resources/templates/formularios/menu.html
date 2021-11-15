@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
+</head>
+<body>
+
+<title>Administração E-Cakes</title>
+
+<div class="row justify-content-center" align="center">
+    <div class="container">
+        <h1 class="display-4">Painel de Gerenciamento - E-Cakes</h1>
+        <p class="lead">Somente o usuário administrador terá acesso a este ambiente.</p>
+    </div>
+</div>
+
+<ul class="nav nav-pills">
+    <!--        Sombra no botão-->
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Categorias</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/categoria/novo}">Gerenciar Categoria</a>
+                <a class="dropdown-item" th:href="@{/categoria}">Listar Categoria</a>
+            </div>
+
+        </li>
+    </div>
+
+    <!--        Sombra no botão-->
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Cliente</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Gerenciar Cliente</a>
+                <a class="dropdown-item" href="#">Listar Cliente</a>
+            </div>
+        </li>
+    </div>
+
+
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Cobertura</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/cobertura/novo}">Gerenciar Cobertura</a>
+                <a class="dropdown-item" th:href="@{/cobertura}" >Listar Cobertura</a>
+            </div>
+        </li>
+    </div>
+
+
+
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Formato</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/formato/novo}">Gerenciar Formato</a>
+                <a class="dropdown-item" th:href="@{/formato}" >Listar Formato</a>
+            </div>
+        </li>
+    </div>
+
+    <!--        Sombra no botão-->
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Produtos Customizados</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item"  th:href="@{/produtocustomizado/novo}" style="color: #FE980F">Gerenciar Produtos Customizados</a>
+                <a class="dropdown-item" th:href="@{/produtocustomizado}">Listar Produtos Customizados</a>
+            </div>
+        </li>
+    </div>
+
+
+    <!--        Sombra no botão-->
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Pedido</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/pedido/novo}">Gerenciar Pedido</a>
+                <a class="dropdown-item" th:href="@{/pedido}">Listar Pedido</a>
+
+            </div>
+        </li>
+    </div>
+
+
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Situação Pedido</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/pedido/novo}">Gerenciar Pedido</a>
+                <a class="dropdown-item" th:href="@{/pedido}">Listar Pedido</a>
+
+            </div>
+        </li>
+    </div>
+
+    <!--        Sombra no botão-->
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Produto</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/produto/novo}">Gerenciar Produto</a>
+                <a class="dropdown-item" th:href="@{/produto/lista}" >Listar Produto</a>
+            </div>
+        </li>
+    </div>
+
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Recheio</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/recheio/novo}">Gerenciar Recheio</a>
+                <a class="dropdown-item" th:href="@{/recheio/lista}" >Listar Recheios</a>
+            </div>
+        </li>
+    </div>
+
+    <!--        Sombra no botão-->
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Relatorios</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{http://localhost:5001/reports}">Servidor de Relatórios</a>
+            </div>
+        </li>
+    </div>
+
+
+    <!--        Sombra no botão-->
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+           aria-expanded="false" style="width:auto">Situação</a>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" th:href="@{/situacao/novo}">Gerenciar Situação</a>
+            <a class="dropdown-item" th:href="@{/situacao}" >Listar Situações</a>
+        </div>
+    </li>
+    </div>
+</ul>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="category(categorias)">
+    <h2>Categorias</h2>
+    <div class="panel-group category-products" id="accordian">
+        <div class="panel panel-default" th:each="categoria : ${categorias}">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="#" th:value="${categoria.id}" th:text="${categoria.nome}"
+                                           onclick="filtraCateg(this)"></a></h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

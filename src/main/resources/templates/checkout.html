@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao}">
+<head>
+</head>
+<body>
+
+<div layout:fragment="conteudo">
+    <section id="cart_items1">
+        <div class="container">
+            <div class="breadcrumbs">
+                <ol class="breadcrumb">
+                    <li><a th:href="@{/home}">Home</a></li>
+                    <li class="active">Sair</li>
+                </ol>
+            </div>
+            <div id="info-cliente" th:if="${cliente.id == null}">
+                <div class="register-req">
+                    <p>Antes de finalizar o pedido, é necessário cadastrar algumas informações a seguir</p>
+                </div>
+                <div class="row shopper-informations">
+                    <div class="col-sm-6 clearfix shopper-informations-info">
+                        <p style="text-align: center">Dados</p>
+                        <form id="bill-to" onsubmit="return saveCliente();" th:object="${cliente}">
+                            <div class="form-one">
+                                <label for="nome">Nome</label>
+                                <input type="text" th:field="*{nome}" data-parsley-required>
+                                <label for="cpf">CPF</label>
+                                <input type="text" class="cpf" th:field="*{cpf}" data-parsley-required>
+                                <label for="telefone">Telefone</label>
+                                <input type="tel" class="phone" th:field="*{telefone}" data-parsley-required>
+                                <label for="endereco">Endereço</label>
+                                <input type="text" th:field="*{endereco}" data-parsley-required>
+                            </div>
+                            <div class="form-two">
+                                <label for="bairro">Bairro</label>
+                                <input type="text" th:field="*{bairro}" data-parsley-required>
+                                <label for="cidade">Cidade</label>
+                                <input type="text" th:field="*{cidade}" data-parsley-required>
+                                <label for="cep">CEP</label>
+                                <input type="text" class="cep" th:field="*{cep}" data-parsley-required>
+                                <label for="estado">Estado</label>
+                                <select th:field="*{estado}" data-parsley-required style="height: 40px">
+                                    <option value=""> (selecione)</option>
+                                    <option value="Paraná">Paraná</option>
+
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-default check_out">Continuar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div id="resumo-pagamento" th:if="${cliente.id != null}">
+                <div id="container-vazio" class="jumbo-fluid display-4 text-center text-dark bg-light">Você ainda não
+                    comprou nenhum produto!
+                    <i class="fa fa-frown-o"></i>
+                </div>
+                <div id="container-cheio">
+                    <div class="review-payment">
+                        <h2>Resumo e Pagamento</h2>
+                    </div>
+
+                    <div class="table-resumo">
+                        <table class="table table-bordered table-striped" style="width: 50vw">
+                            <tbody>
+                            <tr class="table-active">
+                                <td><b>Nome</b></td>
+                                <td th:text="${cliente.nome}">1</td>
+                            </tr>
+                            <tr>
+                                <td><b>Email</b></td>
+                                <td th:text="${cliente.usuario.email}">1</td>
+                            </tr>
+                            <tr>
+                                <td><b>Endereço</b></td>
+                                <td th:text="${cliente.endereco}">1</td>
+                            </tr>
+                            <tr>
+                                <td><b>Cidade</b></td>
+                                <td th:text="${cliente.cidade}">1</td>
+                            </tr>
+                            <tr>
+                                <td><b>CEP</b></td>
+                                <td th:text="${cliente.cep}">1></td>
+                            </tr>
+                            <tr>
+                                <td><b>Bairro</b></td>
+                                <td th:text="${cliente.bairro}">1</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <form th:id="frmPedido" th:action="@{/pedido}" method="post"
+                          onsubmit="return finalizarPedido('/');">
+                        <div th:replace="layout/fragments/carrinho :: carrinho"></div>
+
+                        <section id="do_action">
+                            <div class="container area-finalizar">
+                                <div class="col-sm-6">
+                                    <div class="payment-options">
+                                        <h3 style="text-align: center">Modo de pagamento</h3>
+                                        <span> <label><input checked type="radio" name="tpPagto" value="0"> Transferência Bancária</label> </span>
+                                        <span> <label><input type="radio" name="tpPagto"
+                                                             value="1"> Boleto</label> </span>
+                                        <span> <label><input type="radio" name="tpPagto"
+                                                             value="2"> Paypal</label> </span>
+                                        <span> <label><input type="radio" name="tpPagto" value="3"> Pix</label> </span>
+                                    </div>
+                                    <div class="total_area">
+                                        <ul>
+                                            <li>Sub Total do Carrinho <span id="subTotal"></span></li>
+                                            <li>Custo de Entrega <span id="shippingCost">Grátis</span></li>
+                                            <li>Total <span id="totalCost"></span></li>
+                                        </ul>
+                                        <button class="btn btn-default check_out" type="submit">Finalizar Pedido
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+
+<th:block layout:fragment="javascript">
+    <script type="text/javascript" th:src="@{/js/crud-pedido.js}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#search-div").hide();
+            updateTotal();
+        });
+    </script>
+</th:block>
+
+</html>

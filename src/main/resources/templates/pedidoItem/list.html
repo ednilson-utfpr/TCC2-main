@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao}">
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+    <div class="container emp-profile">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/account}">Minha conta</a></li>
+                <li class="active">Lista de Produtos</li>
+            </ol>
+        </div>
+
+
+        <table class="table table-condensed">
+            <thead>
+            <tr style="text-align-last: center;">
+                <th>Produto</th>
+                <th></th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+            </tr>
+            </thead>
+            <tbody th:each="pedidoItem : ${pedidoItems}">
+            <tr>
+                <td class="table-img">
+                    <a href=""><img th:src="${pedidoItem.produto.imagem}" alt=""></a>
+                </td>
+                <td class="cart_description">
+                    <h4><a href="" th:text="${pedidoItem.produto.nome}">Produto</a></h4>
+                </td>
+
+                <td class="cart_price">
+                    <p th:text="'R$ ' + ${#numbers.formatDecimal(pedidoItem.valor,2,'POINT',2,'COMMA')}"></p>
+                </td>
+                <td th:text="${pedidoItem.quantidade}" class="cart_quantity">1</td>
+            </tr>
+            </tbody>
+            <tr style="text-align-last: center;">
+                <th style="padding-top: 15px">Total -></th>
+                <td></td>
+                <td></td>
+                <th class="cart_price" style="padding-top: 15px">
+                    <p th:text="${total}"></p>
+                </th>
+            </tr>
+        </table>
+
+
+<!--        //Produto customizado Table-->
+<!--        <table class="table table-condensed">-->
+<!--            <thead>-->
+<!--            <tr style="text-align-last: center;">-->
+<!--                <th>Produto Customizado</th>-->
+<!--                <th></th>-->
+<!--                <th>Preço</th>-->
+<!--                <th>Quantidade</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody th:each="pedidoItem : ${pedidoItems}">-->
+<!--            <tr>-->
+
+<!--                <td class="table-img">-->
+<!--                    <a href=""><img th:src="${pedidoItem.produtoCustomizado.imagem}" alt=""></a>-->
+<!--                </td>-->
+<!--                                <td class="cart_description">-->
+<!--                                    <h4><a href="" th:text="${pedidoItem.produtoCustomizado.nome}">Produto</a></h4>-->
+<!--                                </td>-->
+<!--                <td class="cart_price">-->
+<!--                    <p th:text="'R$ ' + ${#numbers.formatDecimal(pedidoItem.valor,2,'POINT',2,'COMMA')}"></p>-->
+<!--                </td>-->
+<!--                <td th:text="${pedidoItem.quantidade}" class="cart_quantity">1</td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--            <tr style="text-align-last: center;">-->
+<!--                <th style="padding-top: 15px">Total -></th>-->
+<!--                <td></td>-->
+<!--                <td></td>-->
+<!--                <th class="cart_price" style="padding-top: 15px">-->
+<!--                    <p th:text="${total}"></p>-->
+<!--                </th>-->
+<!--            </tr>-->
+
+<!--        </table>-->
+
+
+
+    </div>
+</section>
+
+</body>
+
+<th:block layout:fragment="javascript">
+    <script>
+        $(document).ready(function () {
+            $("#search-div").hide();
+        });
+    </script>
+</th:block>
+
+<th:block layout:fragment="css">
+    <link rel="stylesheet" th:href="@{/css/account.css}"/>
+</th:block>
+
+</html>

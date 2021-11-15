@@ -1,0 +1,100 @@
+.{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Lato", sans-ser if;
+}
+
+.btn{
+    background: #e52325;
+    border: none;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+
+
+.flash{
+    animation-name: flash;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+@keyframes flash{
+0%{
+    background #e52325;
+     padding: 15px 20px;
+    }
+50%{
+    background #9d0025;
+     padding: 20px 25px;
+    }
+100%{
+    background #e52325;
+     padding: 15px 20px;
+    }
+}
+
+
+.shadow-lg p-3 mb-5 bg-white rounded{
+width: 100%;
+ background-image: linear-gradient(50deg, #db6e6e 0%, rgba(86,110, 86, 0.52) 100%);
+}
+.container{
+width: 100%;
+ background-image: linear-gradient(50deg, #db6e6e 0%, rgba(86,110, 86, 0.52) 100%);
+}
+
+body{
+ width: 100%;
+ background-image: linear-gradient(50deg, #db6e6e 0%, rgba(86,110, 86, 0.52) 100%);
+}
+
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    grid-gap: 10px;
+}
+
+
+.ut-layout-page {
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100%;
+  padding-bottom: 60px;
+}
+
+.ut-layout-footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20px;
+  margin: 0;
+  border-top: 1px solid #eeeeee;
+  transition: all 0.5s;
+}
+.ut-layout-content {
+  position: relative;
+  margin: 0;
+  margin-top: 50px; 
+  transition: all 0.5s;
+}
+@media (min-width: 992px) {
+  .ut-layout-content.is-toggled {
+    margin-left: 0;
+  }
+}
+@media (min-width: 992px) {
+  .ut-layout-content {
+    margin-left: 210px;
+    margin-right: 100px;
+  }
+}
+.page-header {
+  padding-bottom: 8px;
+  margin: 150px 0 18px;
+  border-bottom: 1px solid #e3a112;
+}

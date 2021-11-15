@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao}">
+<head>
+</head>
+<body>
+
+<section layout:fragment="conteudo">
+    <div id="container-vazio" class="jumbo-fluid display-4 text-center text-dark bg-light">O carrinho está vazio <i
+            class="fa fa-frown-o"></i></div>
+    <div id="container-cheio">
+        <div th:replace="layout/fragments/carrinho :: carrinho"></div>
+
+        <section id="do_action">
+            <div class="container">
+                <div class="heading">
+                    <h3>O que você gostaria de fazer depois?</h3>
+                    <p>Se você tem um código de desconto ou pontos de recompensa que deseja usar ou gostaria de estimar
+                        seu custo de entrega.</p>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="chose_area">
+                            <ul class="user_option">
+                                <li>
+                                    <input type="checkbox">
+                                    <label>Use cupom de desconto</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox">
+                                    <label>Utilize o Voucher de Presente</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox">
+                                    <label>Estimativa de remessa e impostos</label>
+                                </li>
+                            </ul>
+                            <ul class="user_info">
+                                <li class="single_field">
+                                    <label>Country:</label>
+                                    <select>
+                                        <option>Brasil</option>
+
+                                    </select>
+                                </li>
+                                <li class="single_field">
+                                    <label>Region / State:</label>
+                                    <select>
+                                        <option>Select</option>
+                                        <option>PR</option>
+
+                                    </select>
+                                </li>
+                                <li class="single_field zip-field">
+                                    <label>CEP:</label>
+                                    <input type="text">
+                                </li>
+                            </ul>
+                            <a class="btn btn-default update" href="">Obter Cotações</a>
+                            <a class="btn btn-default check_out" href="">Continuar</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="total_area">
+                            <ul>
+                                <li>Sub Total do Carrinho <span id="subTotal">$59</span></li>
+                                <li>Custo de Entrega <span id="shippingCost">Grátis</span></li>
+                                <li>Total <span id="totalCost">R$ 61</span></li>
+                            </ul>
+                            <a class="btn btn-default check_out" th:href="@{/checkout}">Finalizar Pedido</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+</body>
+
+<th:block layout:fragment="javascript">
+    <script type="text/javascript" th:src="@{/js/crud-pedido.js}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#search-div").hide();
+            updateTotal();
+        });
+    </script>
+</th:block>
+
+</html>
