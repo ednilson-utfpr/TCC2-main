@@ -62,8 +62,7 @@ function removerJQuery(id, url) {
 			}
 		} //FIM funcion swal
 	); //FIM swal();
-	
-	
+
 }
 
 function salvar(urlDestino) {

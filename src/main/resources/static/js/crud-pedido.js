@@ -121,8 +121,6 @@ function removeProdutoArray(id) {
     let carrinho = JSON.parse(localStorage.getItem("carrinho"));
     let novoCarrinho = carrinho.filter(pedidoItem => (pedidoItem.produto && pedidoItem.produto.id !==id )
     || (pedidoItem.produtoCustomizado && pedidoItem.produtoCustomizado.id != id));
-
-
     localStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
 }
 
@@ -148,18 +146,6 @@ function updateLocalStorage(id, qtde) {
     })
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
-
-////Soma produto customizado no carrinho
-//function updateLocalStorage(id, qtde) {
-//    let carrinho = JSON.parse(localStorage.getItem("carrinho"));
-//    carrinho.forEach(function (pedidoItem) {
-//        if (pedidoItem.produtoCustomizado.id === id)  {
-//            pedidoItem.quantidade = Number(qtde);
-//        }
-//    })
-//    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-//}
-
 
 function getNumber(jqueryInput) {
     return Number(jqueryInput.text().split('$')[1].replace('.', '').replace(',', '.'));

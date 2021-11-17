@@ -9,9 +9,12 @@ import br.edu.utfpr.pb.tcc.service.PedidoService;
 import br.edu.utfpr.pb.tcc.service.SituacaoService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import groovy.lang.GString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
@@ -30,6 +34,9 @@ public class PedidoController {
 
     @Autowired
     private PedidoService pedidoService;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Autowired
     private PedidoItemService pedidoItemService;
@@ -94,6 +101,12 @@ public class PedidoController {
         pedido.setSituacao(situacaoService.findOne(1L));
         pedidoService.save(pedido);
 
+        //ENVIA EMAIL COM STATUS DO PEDIDO
+        sendMail(pedido.getCliente().getUsuario().getEmail(),
+                pedido.getId().toString(),
+                pedido.getSituacao().getDescricao());
+
+
         //Percorrer os itemsPedido e salvar o código do pedido
         List<Map<String, Object>> pedidoItems = mapper.convertValue(json.get("pedidoItem"), new TypeReference<>() {
         });
@@ -102,6 +115,7 @@ public class PedidoController {
             p.setPedido(pedido);
             pedidoItemService.save(p);
         });
+
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -114,6 +128,9 @@ public class PedidoController {
         carregarCombosCliente(model);
         carregarCombosCategoria(model);
         carregarCombosSituacao(model);
+
+
+
         return "pedido/formSituacao";
     }
 
@@ -128,16 +145,20 @@ public class PedidoController {
         return "redirect:/pedido";
     }
 
-
-    ////MUDAR STATUS SITUAÇÃO PEDIDO
+    //MUDAR STATUS SITUAÇÃO PEDIDO
     @PostMapping(value = {"/situacao"})
     public String save(@Valid Pedido pedido, BindingResult result, Model model, RedirectAttributes attributes) {
         if (result.hasErrors()) {
             model.addAttribute("pedido", pedido);
+
             return "pedido/formSituacao";
         }
         pedidoService.save(pedido);
         attributes.addFlashAttribute("sucesso", "Registro salvo com sucesso!");
+//ENVIA UM EMAIL COM A MODIFICAÇÃO DO STATUS DO PEDIDO
+        sendMail(pedido.getCliente().getUsuario().getEmail(),
+                pedido.getId().toString(),
+                pedido.getSituacao().getDescricao());
         return "redirect:/pedido";
     }
 
@@ -153,7 +174,23 @@ public class PedidoController {
     }
 
     //Carrega os combos de Situação na edição da tabela
-    private void carregarCombosSituacao(Model model) {
-        model.addAttribute("situacoes", situacaoService.findAll());
+    private void carregarCombosSituacao(Model model) { model.addAttribute("situacoes", situacaoService.findAll());
+    }
+
+//FUNÇÃO PARA ENVIAR - EMAIL
+    public String sendMail(@PathVariable String email, @PathVariable String nrPedido, @PathVariable String status){
+        try {
+            MimeMessage mail = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper( mail );
+            helper.setTo( email );
+            helper.setSubject( "Status do Pedido nr: " + nrPedido);
+            helper.setText("<p>Olá Cliente - E-Cakes informa!</p>" + status, true);
+            mailSender.send(mail);
+            return "OK" + email + nrPedido + status;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Erro ao enviar e-mail";
+        }
     }
 }
+

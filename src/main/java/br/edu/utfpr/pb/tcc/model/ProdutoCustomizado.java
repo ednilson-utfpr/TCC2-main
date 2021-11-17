@@ -38,13 +38,20 @@ public class ProdutoCustomizado implements Serializable {
     private Formato formato;
 
     @Column(length = 300, nullable = false)
-    private String imagem;
+    private String imagem= "/images/home/meubolo.jpg";
 
     @Column(nullable = false)
     private Double valor;
 
+//    @NotEmpty(message = "O campo não pode ser vazio!")
+//    @Column(length = 400)
+//    private String nome;
+
+
+
     public void setImagem(String imagem) {
         this.imagem = "/images/home/meubolo.jpg";
     }
+
 
 }

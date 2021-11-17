@@ -37,6 +37,7 @@
         <span id="coberturaNome" hidden th:value="${coberturaNome}"></span>
         <span id="recheioNome" hidden th:value="${recheioNome}"></span>
         <span id="formatoNome" hidden th:value="${formatoNome}"></span>
+        <span id="nome" hidden th:value="${nome}"></span>
         <span id="produtoCustomizadoImagem" hidden th:value="${produtoCustomizadoImagem}"></span>
 
         <table class="table table-striped table-responsive-md">
@@ -47,6 +48,7 @@
                 <th>Cobertura</th>
                 <th>Formato</th>
                 <th>Recheio</th>
+                <th>Nome</th>
                 <th>Valor Total</th>
                 <th>Editar</th>
                 <th>Remover</th>
@@ -61,6 +63,7 @@
                 <td th:text="${produtocustomizado.cobertura.nome}">cobertura_id</td>
                 <td th:text="${produtocustomizado.formato.nome}">formato_id</td>
                 <td th:text="${produtocustomizado.recheio.nome}">recheio_id</td>
+                <td th:text="${produtocustomizado.nome}">nome</td>
                 <td th:text="${produtocustomizado.valor}">valor</td>
 
                 <!-- EDITAR -->

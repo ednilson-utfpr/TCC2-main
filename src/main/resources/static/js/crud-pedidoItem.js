@@ -33,6 +33,7 @@ function adicionaProdutoCustomizadoCarrinho() {
             pedidoItem.produtoCustomizado.id = produtoCustomizadoId;
              //IMAGEM PRODUTO
             pedidoItem.produtoCustomizado.imagem = produtoCustomizadoImagem;
+
             pedidoItem.produtoCustomizado.cobertura.nome = coberturaNome;
             pedidoItem.produtoCustomizado.recheio.nome = recheioNome;
             pedidoItem.produtoCustomizado.formato.nome = formatoNome;

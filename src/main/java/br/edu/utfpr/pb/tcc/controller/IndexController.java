@@ -66,9 +66,6 @@ public class IndexController {
         Usuario u = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Cliente c = clienteService.findClienteByUsuarioId(u.getId());
         if(c != null){
-//            List<PedidoItem> pedidoItems = pedidoItemService.findAllByPedido_Cliente_Id(c.getId());
-//            System.out.println(pedidoItems);
-//            model.addAttribute("pedidoItems", pedidoItems);
             List<Pedido> pedidos = pedidoService.findAllByClienteId(c.getId());
             if(pedidos.size() > 0){
                 model.addAttribute("pedidos", pedidos);

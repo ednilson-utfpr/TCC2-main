@@ -37,6 +37,7 @@
       <tr>
         <th>Código</th>
         <th>Cliente</th>
+        <th>E-mail</th>
         <th>Data Alteração</th>
         <th>Data Pedido</th>
         <th>Tipo de Frete</th>
@@ -53,6 +54,7 @@
       <tr th:each="pedido: ${pedidos}">
         <td th:text="${pedido.id}">código</td>
         <td th:text="${pedido.cliente.nome}">pedido.cliente_id</td>
+        <td th:text="${pedido.cliente.usuario.email}">pedido.cliente_id.usuario_id.email</td>
         <td th:text="${pedido.dataAlteracao}">dataAlteracao</td>
         <td th:text="${pedido.dataPedido}">dataPedido</td>
         <td th:text="${pedido.tipoFrete}">tipoFrete</td>
@@ -60,7 +62,6 @@
         <td th:text="${pedido.tipoPagamento}">tipoPagamento</td>
         <td th:text="${pedido.valorFrete}">valorFrete</td>
         <td th:text="${pedido.valorTotal}">valorTotal</td>
-
 
 
         <!-- EDITAR -->
