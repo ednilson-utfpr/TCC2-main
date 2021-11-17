@@ -23,8 +23,9 @@ public class EmailController {
 
             MimeMessageHelper helper = new MimeMessageHelper( mail );
             helper.setTo( email );
-            helper.setSubject( "Status do Pedido: " + nrPedido);
-            helper.setText("<p>Olá Cliente! Seu Pedido</p>" + status, true);
+            helper.setSubject( "Status do Pedido E-Cakes: " + nrPedido);
+            helper.setText("<p>Olá Cliente! Seu Pedido</p>" + "Número: " + nrPedido
+                            + ". Se encontra no seguinte status: " +status, true);
             mailSender.send(mail);
 
             return "OK" + email + status;

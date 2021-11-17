@@ -105,7 +105,8 @@ public class PedidoController {
         sendMail(pedido.getCliente().getUsuario().getEmail(),
                 pedido.getId().toString(),
                 pedido.getSituacao().getDescricao());
-
+        //ENVIA EMAIL PEDIDO NOVO P/ O ADM DO SISTEMA
+        sendMailAdm("efs26@msn.com",pedido.getId().toString(),pedido.getCliente().getNome(), pedido.getSituacao().getDescricao(), pedido.getValorTotal().toString());
 
         //Percorrer os itemsPedido e salvar o código do pedido
         List<Map<String, Object>> pedidoItems = mapper.convertValue(json.get("pedidoItem"), new TypeReference<>() {
@@ -115,8 +116,6 @@ public class PedidoController {
             p.setPedido(pedido);
             pedidoItemService.save(p);
         });
-
-
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
@@ -128,9 +127,6 @@ public class PedidoController {
         carregarCombosCliente(model);
         carregarCombosCategoria(model);
         carregarCombosSituacao(model);
-
-
-
         return "pedido/formSituacao";
     }
 
@@ -183,14 +179,39 @@ public class PedidoController {
             MimeMessage mail = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper( mail );
             helper.setTo( email );
-            helper.setSubject( "Status do Pedido nr: " + nrPedido);
-            helper.setText("<p>Olá Cliente - E-Cakes informa!</p>" + status, true);
+            helper.setSubject( "Pedido E-Cakes nr: " + nrPedido);
+            helper.setText("<h2><i>Olá Cliente! <i></h2>" + "Seu Pedido Número: " + nrPedido+ ". "
+                    + "Se encontra com o seguinte status: "+ "<h2>" + status + "<h2>" , true);
             mailSender.send(mail);
+
             return "OK" + email + nrPedido + status;
         } catch (Exception e) {
             e.printStackTrace();
             return "Erro ao enviar e-mail";
         }
     }
+
+    //FUNÇÃO PARA ENVIAR - EMAIL -ADM DO SISTEMA
+    public String sendMailAdm(@PathVariable String email, @PathVariable String nrPedido, @PathVariable String cliente, @PathVariable String status,
+                              @PathVariable String valorTotal ){
+        try {
+            MimeMessage mail = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper( mail );
+            helper.setTo( email );
+            helper.setSubject( "Pedido E-Cakes nr: " + nrPedido);
+            helper.setText("<h2><i>Olá Admnistrador! <i></h2>" + "Recebido Pedido Número: " + nrPedido+ ". "
+                    + "<p> CLiente: "+ cliente +"<p>"
+                    + "<p>Status do Pedido: " + status + "</p>" + "Assim que o pagamento estiver aprovado, mãos à obra!!!" + "<p> Valor Total:</p>"
+                    +"<h2>R$ " + valorTotal + "</h2>", true);
+            mailSender.send(mail);
+
+            return "OK";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Erro ao enviar e-mail";
+        }
+    }
+
+
 }
 
