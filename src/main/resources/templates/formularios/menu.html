@@ -41,8 +41,8 @@
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                aria-expanded="false" style="width:auto">Cliente</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Gerenciar Cliente</a>
-                <a class="dropdown-item" href="#">Listar Cliente</a>
+                <a class="dropdown-item" th:href="@{/cliente/novo}">Gerenciar Cliente</a>
+                <a class="dropdown-item" th:href="@{/cliente}">Listar Cliente</a>
             </div>
         </li>
     </div>
@@ -106,7 +106,6 @@
             <div class="dropdown-menu">
                 <a class="dropdown-item" th:href="@{/pedido/novo}">Gerenciar Pedido</a>
                 <a class="dropdown-item" th:href="@{/pedido}">Listar Pedido</a>
-
             </div>
         </li>
     </div>

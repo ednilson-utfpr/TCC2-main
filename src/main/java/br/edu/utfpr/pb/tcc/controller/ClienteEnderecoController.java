@@ -1,15 +1,9 @@
 package br.edu.utfpr.pb.tcc.controller;
 
-import br.edu.utfpr.pb.tcc.model.Categoria;
 import br.edu.utfpr.pb.tcc.model.Cliente;
-import br.edu.utfpr.pb.tcc.model.Recheio;
-import br.edu.utfpr.pb.tcc.model.Usuario;
 import br.edu.utfpr.pb.tcc.service.ClienteService;
 import br.edu.utfpr.pb.tcc.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,10 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-
 @Controller
-@RequestMapping("cliente")
-public class ClienteController {
+@RequestMapping("clienteEndereco")
+public class ClienteEnderecoController {
 
     @Autowired
     private ClienteService clienteService;
@@ -42,34 +35,23 @@ public class ClienteController {
         return "cliente/form";
     }
 
+
     @PostMapping
-    public ResponseEntity<?> save(@Valid Cliente cliente, BindingResult result, Model model, RedirectAttributes attributes) {
+    public String save(@Valid Cliente cliente,
+                       BindingResult result,
+                       Model model,
+                       RedirectAttributes attributes) {
         if ( result.hasErrors() ) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            model.addAttribute("cliente", cliente);
+            return "cliente/form";
         }
-        cliente.setUsuario((Usuario)(SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
+
         clienteService.save(cliente);
-        return new ResponseEntity<>(HttpStatus.OK);
+        attributes.addFlashAttribute("sucesso",
+                "Registro salvo com sucesso!");
+        return "redirect:/cliente";
 
     }
-
-//    @PostMapping
-//    public String save(@Valid Cliente cliente,
-//                       BindingResult result,
-//                       Model model,
-//                       RedirectAttributes attributes) {
-//        if ( result.hasErrors() ) {
-//            model.addAttribute("cliente", cliente);
-//            return "cliente/form";
-//        }
-//
-//      clienteService.save(cliente);
-//        attributes.addFlashAttribute("sucesso",
-//                "Registro salvo com sucesso!");
-//        return "redirect:/cliente";
-//
-//    }
-
 
 
     @GetMapping("{id}")
@@ -95,3 +77,4 @@ public class ClienteController {
         model.addAttribute("usuarios", usuarioService.findAll());
     }
 }
+

@@ -106,7 +106,7 @@ public class PedidoController {
                 pedido.getId().toString(),
                 pedido.getSituacao().getDescricao());
         //ENVIA EMAIL PEDIDO NOVO P/ O ADM DO SISTEMA
-        sendMailAdm("efs26@msn.com",pedido.getId().toString(),pedido.getCliente().getNome(), pedido.getSituacao().getDescricao(), pedido.getValorTotal().toString());
+        sendMailAdm("ecakespatobranco@gmail.com",pedido.getId().toString(),pedido.getCliente().getNome(), pedido.getSituacao().getDescricao(), pedido.getValorTotal().toString());
 
         //Percorrer os itemsPedido e salvar o código do pedido
         List<Map<String, Object>> pedidoItems = mapper.convertValue(json.get("pedidoItem"), new TypeReference<>() {
@@ -180,8 +180,8 @@ public class PedidoController {
             MimeMessageHelper helper = new MimeMessageHelper( mail );
             helper.setTo( email );
             helper.setSubject( "Pedido E-Cakes nr: " + nrPedido);
-            helper.setText("<h2><i>Olá Cliente! <i></h2>" + "Seu Pedido Número: " + nrPedido+ ". "
-                    + "Se encontra com o seguinte status: "+ "<h2>" + status + "<h2>" , true);
+            helper.setText("<h2><i>Olá Cliente! <i></h2>" + "Seu Pedido Número: " + nrPedido
+                    + ", se encontra com o seguinte status: "+ "<h2>" + status + "<h2>" , true);
             mailSender.send(mail);
 
             return "OK" + email + nrPedido + status;
@@ -199,9 +199,9 @@ public class PedidoController {
             MimeMessageHelper helper = new MimeMessageHelper( mail );
             helper.setTo( email );
             helper.setSubject( "Pedido E-Cakes nr: " + nrPedido);
-            helper.setText("<h2><i>Olá Admnistrador! <i></h2>" + "Recebido Pedido Número: " + nrPedido+ ". "
-                    + "<p> CLiente: "+ cliente +"<p>"
-                    + "<p>Status do Pedido: " + status + "</p>" + "Assim que o pagamento estiver aprovado, mãos à obra!!!" + "<p> Valor Total:</p>"
+            helper.setText("<h2><i>Olá Administrador E-CAKES! <i></h2>" + "Foi recebido pelo sistema o pedido Número: " + nrPedido+ ". "
+                    + "<p> Cliente: "+ cliente +"<p>"
+                    + "<p>Status atual do Pedido: " + status + "</p>" + "Assim que o pagamento estiver aprovado, mãos à obra!!!" + "<p> Valor Total:</p>"
                     +"<h2>R$ " + valorTotal + "</h2>", true);
             mailSender.send(mail);
 

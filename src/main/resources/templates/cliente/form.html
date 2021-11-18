@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout-padrao}">
+<head>
+</head>
+<body>
+<section layout:fragment="conteudo">
+    <div class="container" style="margin-top:100px;">
+        <h2>Formulário de Cadastro - Cliente</h2>
+
+        <div class="row">
+            <form th:action="@{/cliente}" method="post"
+                  th:object="${cliente}">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="id">Código </label>
+                        <input type="text" class="form-control"
+                               th:field="*{id}"	readonly />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control"
+                               th:field="*{nome}" />
+                        <span th:if="${#fields.hasErrors('nome')}"
+                              th:errors="*{nome}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="form-control"
+                               th:field="*{cpf}" />
+                        <span th:if="${#fields.hasErrors('cpf')}"
+                              th:errors="*{cpf}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="endereco">endereco</label>
+                        <input type="text" class="form-control"
+                               th:field="*{endereco}" />
+                        <span th:if="${#fields.hasErrors('endereco')}"
+                              th:errors="*{endereco}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="telefone">TELEFONE</label>
+                        <input type="text" class="form-control"
+                               th:field="*{telefone}" />
+                        <span th:if="${#fields.hasErrors('telefone')}"
+                              th:errors="*{telefone}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="enderecoEntrega">ENDEREÇO ENTREGA</label>
+                        <input type="text" class="form-control"
+                               th:field="*{enderecoEntrega}" />
+                        <span th:if="${#fields.hasErrors('enderecoEntrega')}"
+                              th:errors="*{enderecoEntrega}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="bairro">BAIRRO</label>
+                        <input type="text" class="form-control"
+                               th:field="*{bairro}" />
+                        <span th:if="${#fields.hasErrors('bairro')}"
+                              th:errors="*{bairro}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="estado">ESTADO</label>
+                        <input type="text" class="form-control"
+                               th:field="*{estado}" />
+                        <span th:if="${#fields.hasErrors('estado')}"
+                              th:errors="*{estado}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="cidade">Cidade</label>
+                        <input type="text" class="form-control"
+                               th:field="*{cidade}" />
+                        <span th:if="${#fields.hasErrors('cidade')}"
+                              th:errors="*{cidade}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="cep">CEP</label>
+                        <input type="text" class="form-control"
+                               th:field="*{cep}" />
+                        <span th:if="${#fields.hasErrors('cep')}"
+                              th:errors="*{cep}"
+                              class="text-danger"
+                        ></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="usuario">Usuario</label>
+                        <select class="form-control"
+                                th:field="*{usuario}">
+                            <option value=""> (selecione)</option>
+                            <option th:each="usuario: ${usuarios}" th:value="${usuario.id}"
+                                    th:text="${usuario.email}" style="width: auto"></option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"
+                              class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-primary"
+                            type="submit" >Salvar</button>
+                </div>
+            </form>
+        </div> <!-- FIM div row -->
+    </div>
+</section>
+</body>
+</html>
+
+
+
+

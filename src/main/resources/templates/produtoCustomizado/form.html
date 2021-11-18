@@ -83,18 +83,6 @@
                 </div>
 
 
-<!--                <div class="row">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="nome">Nome</label>-->
-<!--                        <input type="text" class="form-control"-->
-<!--                               th:field="*{nome}" style="width:auto"/>-->
-<!--                        <span th:if="${#fields.hasErrors('nome')}"-->
-<!--                              th:errors="*{nome}"-->
-<!--                              class="text-danger"-->
-<!--                        ></span>-->
-<!--                    </div>-->
-<!--                </div>-->
-
                 <div class="row">
                     <div class="form-group">
                         <label for="valor">Valor total em R$</label>
@@ -112,7 +100,7 @@
                 <!-- FIM customizado -->
 
                 <button id="btn-submit" type="submit" class="btn btn-default add-to-cart"><i
-                        class="fa fa-shopping-cart"></i>Add ao carrinho
+                        class="fa fa-shopping-cart"></i>Adicionar ao carrinho
                 </button>
             </form>
         </div> <!-- FIM div row -->
@@ -122,24 +110,6 @@
 
 <th:block layout:fragment="javascript">
     <script type="text/javascript" th:src="@{/js/produtoCustomizado.js}"></script>
-
-<!--    <script>-->
-<!--        $(document).ready(function () {-->
-<!--            atualizaValorProduto();-->
-<!--            $('#btn-submit').on('click',function(e){-->
-<!--                e.preventDefault();-->
-<!--                var form = $(this).parents('form');-->
-<!--                try {-->
-<!--                    form.submit();-->
-<!--                    Swal.fire('Sucesso!', 'Produto adicionado ao carrinho👍!', 'success');-->
-<!--                } catch(err) {-->
-<!--                    console.log(err);-->
-<!--                    alert('Ocorreu algum erro');-->
-<!--                }-->
-<!--            });-->
-<!--        });-->
-
-<!--    </script>-->
 
 
 

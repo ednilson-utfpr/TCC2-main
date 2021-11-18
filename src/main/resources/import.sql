@@ -38,10 +38,6 @@ INSERT INTO usuario(email, username, password) VALUES ('efs@msn.com', 'admin','$
 INSERT INTO usuario(email, username, password) VALUES ('efs26@gmail.com', 'teste','$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem');
 INSERT INTO usuario(email, username, password) VALUES ('efs@hotmail.com', 'confeiteira','$2a$10$.PVIfB07x.SfMYTcToxL0.yxcLWU0GbS2NUO1W1QAvqMm/TsFhVem');
 
-
-INSERT INTO employee_tbl(name, designation, salary,doj) VALUES ('ednilson', 'admin','12.0','doj');
-
-
 INSERT INTO usuario_permissoes(usuario_id, permissoes_id) VALUES (1, 1);
 INSERT INTO usuario_permissoes(usuario_id, permissoes_id) VALUES (1, 2);
 INSERT INTO usuario_permissoes(usuario_id, permissoes_id) VALUES (2, 2);

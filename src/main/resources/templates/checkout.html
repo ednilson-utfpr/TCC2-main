@@ -5,6 +5,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout-padrao}">
 <head>
+
+
 </head>
 <body>
 
@@ -38,16 +40,23 @@
                             <div class="form-two">
                                 <label for="bairro">Bairro</label>
                                 <input type="text" th:field="*{bairro}" data-parsley-required>
-                                <label for="cidade">Cidade</label>
-                                <input type="text" th:field="*{cidade}" data-parsley-required>
+                                <select th:field="*{cidade}" data-parsley-required style="height: 40px">
+                                    <option value=""> (selecione)</option>
+                                    <option value="Pato Branco">Pato Branco</option>
+
+                                </select>
                                 <label for="cep">CEP</label>
                                 <input type="text" class="cep" th:field="*{cep}" data-parsley-required>
                                 <label for="estado">Estado</label>
                                 <select th:field="*{estado}" data-parsley-required style="height: 40px">
                                     <option value=""> (selecione)</option>
                                     <option value="Paraná">Paraná</option>
-
                                 </select>
+
+                                <label for="enderecoEntrega">Endereço Entrega</label>
+                                <input type="text" th:field="*{enderecoEntrega}"
+                                       placeholder="Informe um novo endereço ou retirar o produto no local."
+                                       data-parsley-required>
                             </div>
                             <button type="submit" class="btn btn-default check_out">Continuar</button>
                         </form>
@@ -80,6 +89,15 @@
                                 <td><b>Endereço</b></td>
                                 <td th:text="${cliente.endereco}">1</td>
                             </tr>
+
+                            <tr>
+                                <td><b>Endereço Entrega</b></td>
+                                <td th:text="${cliente.enderecoEntrega}">1</td>
+
+                               <a class="dropdown-item" th:href="@{/clienteEndereco/1}">Mudar Endereço Entrega</a>
+
+
+                            </tr>
                             <tr>
                                 <td><b>Cidade</b></td>
                                 <td th:text="${cliente.cidade}">1</td>
@@ -92,9 +110,23 @@
                                 <td><b>Bairro</b></td>
                                 <td th:text="${cliente.bairro}">1</td>
                             </tr>
-                            </tbody>
+
+                            <tr>
+
+                            </tr>
+
+
+
                         </table>
+
+
+
+                        </tbody>
                     </div>
+
+
+
+
 
                     <form th:id="frmPedido" th:action="@{/pedido}" method="post"
                           onsubmit="return finalizarPedido('/');">
@@ -110,7 +142,8 @@
                                                              value="1"> Boleto</label> </span>
                                         <span> <label><input type="radio" name="tpPagto"
                                                              value="2"> Paypal</label> </span>
-                                        <span> <label><input type="radio" name="tpPagto" value="3"> Pix</label> </span>
+                                        <span> <label><input type="radio" name="tpPagto"
+                                                             value="3"> Pix</label> </span>
                                     </div>
                                     <div class="total_area">
                                         <ul>
@@ -120,6 +153,8 @@
                                         </ul>
                                         <button class="btn btn-default check_out" type="submit">Finalizar Pedido
                                         </button>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -130,6 +165,7 @@
         </div>
     </section>
 </div>
+
 
 </body>
 
@@ -142,6 +178,9 @@
             updateTotal();
         });
     </script>
+
+
+
 </th:block>
 
 </html>

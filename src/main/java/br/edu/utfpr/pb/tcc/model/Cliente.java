@@ -34,6 +34,9 @@ public class Cliente implements Serializable{
     @Column(length = 200, nullable = false)
     private String endereco;
 
+    @Column(length = 200, nullable = false)
+    private String enderecoEntrega;
+
     @NotEmpty(message = "O campo não pode ser vazio!")
     @Column(length = 30, nullable = false)
     private String bairro;
