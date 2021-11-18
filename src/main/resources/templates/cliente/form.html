@@ -5,6 +5,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout-padrao}">
 <head>
+
 </head>
 <body>
 <section layout:fragment="conteudo">
@@ -13,7 +14,7 @@
 
         <div class="row">
             <form th:action="@{/cliente}" method="post"
-                  th:object="${cliente}">
+                                 th:object="${cliente}">
                 <div class="row">
                     <div class="form-group">
                         <label for="id">Código </label>
@@ -145,9 +146,10 @@
                 <div class="row">
                     <button class="btn btn-primary"
                             type="submit" >Salvar</button>
+
                 </div>
             </form>
-        </div> <!-- FIM div row -->
+        </div>
     </div>
 </section>
 </body>

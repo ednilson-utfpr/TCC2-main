@@ -5,11 +5,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/layout-padrao}">
 <head>
-
-
 </head>
 <body>
-
 <div layout:fragment="conteudo">
     <section id="cart_items1">
         <div class="container">
@@ -94,10 +91,16 @@
                                 <td><b>Endereço Entrega</b></td>
                                 <td th:text="${cliente.enderecoEntrega}">1</td>
 
-                               <a class="dropdown-item" th:href="@{/clienteEndereco/1}">Mudar Endereço Entrega</a>
-
-
                             </tr>
+
+
+
+                                <td>
+                                    <a class="fa fa-pencil-square" aria-hidden="true" th:href="@{/clienteEndereco/{id}(id=${cliente.id})}"> Clique aqui para mudar
+                                        o Endereço Entrega</a>
+                                </td>
+
+
                             <tr>
                                 <td><b>Cidade</b></td>
                                 <td th:text="${cliente.cidade}">1</td>
@@ -110,23 +113,11 @@
                                 <td><b>Bairro</b></td>
                                 <td th:text="${cliente.bairro}">1</td>
                             </tr>
-
                             <tr>
-
                             </tr>
-
-
-
                         </table>
-
-
-
                         </tbody>
                     </div>
-
-
-
-
 
                     <form th:id="frmPedido" th:action="@{/pedido}" method="post"
                           onsubmit="return finalizarPedido('/');">
@@ -153,8 +144,6 @@
                                         </ul>
                                         <button class="btn btn-default check_out" type="submit">Finalizar Pedido
                                         </button>
-
-
                                     </div>
                                 </div>
                             </div>
@@ -166,21 +155,16 @@
     </section>
 </div>
 
-
 </body>
 
 <th:block layout:fragment="javascript">
     <script type="text/javascript" th:src="@{/js/crud-pedido.js}"></script>
-
     <script>
         $(document).ready(function () {
             $("#search-div").hide();
             updateTotal();
         });
     </script>
-
-
-
 </th:block>
 
 </html>

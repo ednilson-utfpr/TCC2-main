@@ -28,11 +28,21 @@ public class ClienteController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private PedidoController pedidoController;
+
+    @Autowired
+    private PedidoItemController pedidoItemController;
+
+
+
 
     @GetMapping
     public String list(Model model) {
         model.addAttribute("clientes", clienteService.findAll());
-        return "cliente/list";
+
+            return "/index";
+
     }
 
     @GetMapping(value = {"new", "novo", "form"})
@@ -50,27 +60,7 @@ public class ClienteController {
         cliente.setUsuario((Usuario)(SecurityContextHolder.getContext().getAuthentication().getPrincipal()));
         clienteService.save(cliente);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
-
-//    @PostMapping
-//    public String save(@Valid Cliente cliente,
-//                       BindingResult result,
-//                       Model model,
-//                       RedirectAttributes attributes) {
-//        if ( result.hasErrors() ) {
-//            model.addAttribute("cliente", cliente);
-//            return "cliente/form";
-//        }
-//
-//      clienteService.save(cliente);
-//        attributes.addFlashAttribute("sucesso",
-//                "Registro salvo com sucesso!");
-//        return "redirect:/cliente";
-//
-//    }
-
-
 
     @GetMapping("{id}")
     public String form(@PathVariable Long id, Model model) {

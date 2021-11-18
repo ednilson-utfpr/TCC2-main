@@ -41,16 +41,16 @@
                 <th>Código</th>
                 <th>Nome</th>
                 <th>CPF</th>
-                <th>Telefone</th>
-                <th>Endereço</th>
-                <th>Endereço Entrega</th>
-                <th>Bairro</th>
-                <th>Cidade</th>
-                <th>Estado</th>
+                <th>TELEFONE</th>
+                <th>ENDEREÇO</th>
+                <th>ENDEREÇO DE ENTREGA</th>
+                <th>BAIRRO</th>
+                <th>CIDADE</th>
+                <th>ESTADO</th>
                 <th>CEP</th>
-                <th>Usuário</th>
-                <th>Editar</th>
-                <th>Remover</th>
+                <th>USÚARIO</th>
+                <th>EDITAR</th>
+                <th>REMOVER</th>
             </tr>
             </thead>
             <tbody>
@@ -60,15 +60,16 @@
                 <td th:text="${cliente.cpf}">cpf</td>
                 <td th:text="${cliente.telefone}">telefone</td>
                 <td th:text="${cliente.endereco}">endereco</td>
-                <td th:text="${cliente.enderecoEntrega}">enderecoEntrega</td>
+                <td th:text="${cliente.enderecoEntrega}" >enderecoEntrega</td>
                 <td th:text="${cliente.bairro}">bairro</td>
                 <td th:text="${cliente.cidade}">cidade</td>
                 <td th:text="${cliente.estado}">estado</td>
                 <td th:text="${cliente.cep}">cep</td>
                 <td th:text="${cliente.usuario.email}">usuario_id</td>
-                <!-- EDITAR -->
+
+
                 <td>
-                    <a th:href="@{/clienteEndereco/{id}(id=${cliente.id})}" class="btn btn-primary">
+                    <a th:href="@{/cliente/{id}(id=${cliente.id})}" class="btn btn-primary">
                         <i class="fa fa-edit ml-2"></i>
                     </a>
                 </td>
@@ -79,8 +80,9 @@
                           onsubmit="return removerAjax(this, '/cliente');">
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="btn btn-danger">
-                            <i class="fa fa-trash ml-2"></i>
+                            <i class="fa fa-trash ml-2" ></i>
                         </button>
+
                     </form>
 
                 </td>
@@ -91,7 +93,15 @@
 </section>
 <th:block layout:fragment="javascript">
     <script type="text/javascript" th:src="@{/js/crud-msg.js}"></script>
+    <script type="text/javascript" th:src="@{/js/contact.js}"></script>
+
+
+
+
 </th:block>
+
+
+
 </body>
 </html>
         
