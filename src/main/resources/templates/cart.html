@@ -70,7 +70,7 @@
                                 <li>Custo de Entrega <span id="shippingCost">Grátis</span></li>
                                 <li>Total <span id="totalCost">R$ 61</span></li>
                             </ul>
-                            <a class="btn btn-default check_out" th:href="@{/checkout}">Finalizar Pedido</a>
+                            <a class="btn btn-default check_out" th:href="@{/checkout}" th:onclick="endAlert()">Prosseguir Pedido</a>
                         </div>
                     </div>
                 </div>
@@ -83,6 +83,7 @@
 
 <th:block layout:fragment="javascript">
     <script type="text/javascript" th:src="@{/js/crud-pedido.js}"></script>
+    <script type="text/javascript" th:src="@{/js/action.js}"></script>
 
     <script>
         $(document).ready(function () {
@@ -90,6 +91,15 @@
             updateTotal();
         });
     </script>
+
+    <script>
+    function endEntrega() {
+    alert("Confirme o endereço de entrega!!!");
+    }
+     </script>
+
+
+
 </th:block>
 
 </html>

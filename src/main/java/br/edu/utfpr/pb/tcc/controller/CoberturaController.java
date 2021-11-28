@@ -38,7 +38,7 @@ public class CoberturaController {
     public String save(@Valid Cobertura cobertura, BindingResult result, Model model, RedirectAttributes attributes) {
         if ( result.hasErrors() ) {
             model.addAttribute("cobertura", cobertura);
-            return "cobertura";
+            return "cobertura/form";
         }
 
         coberturaService.save(cobertura);

@@ -70,6 +70,18 @@
         </li>
     </div>
 
+
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false" style="width:auto">Massa</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" th:href="@{/massa/novo}">Gerenciar Massa</a>
+                <a class="dropdown-item" th:href="@{/massa}" >Listar Massa</a>
+            </div>
+        </li>
+    </div>
+
     <!--        Sombra no botão-->
     <div class="shadow-lg p-3 mb-5 bg-white rounded">
         <li class="nav-item dropdown">
@@ -126,7 +138,7 @@
                aria-expanded="false" style="width:auto">Recheio</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" th:href="@{/recheio/novo}">Gerenciar Recheio</a>
-                <a class="dropdown-item" th:href="@{/recheio/lista}" >Listar Recheios</a>
+                <a class="dropdown-item" th:href="@{/recheio}" >Listar Recheios</a>
             </div>
         </li>
     </div>

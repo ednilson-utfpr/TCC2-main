@@ -21,7 +21,6 @@ public class ClienteEnderecoController {
     @Autowired
     private UsuarioService usuarioService;
 
-
     @GetMapping
     public String list(Model model) {
         model.addAttribute("clientes", clienteService.findAll());
@@ -33,6 +32,11 @@ public class ClienteEnderecoController {
         model.addAttribute("cliente", new Cliente());
         carregarCombosUsuario(model);
         return "cliente/form";
+    }
+
+    @GetMapping(value = {"end"})
+    public String form() {
+           return "cliente/checkout";
     }
 
 
@@ -59,6 +63,7 @@ public class ClienteEnderecoController {
         model.addAttribute("cliente", clienteService.findOne(id));
         carregarCombosUsuario(model);
         return "cliente/form";
+
     }
 
     @DeleteMapping("{id}")

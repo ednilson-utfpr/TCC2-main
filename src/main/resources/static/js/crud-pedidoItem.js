@@ -16,6 +16,7 @@ function adicionaProdutoCustomizadoCarrinho() {
     var coberturaNome = $('#coberturaNome').attr('value');
     var recheioNome = $('#recheioNome').attr('value');
     var formatoNome = $('#formatoNome').attr('value');
+    var massaNome = $('#massaNome').attr('value');
 
     if (produtoCustomizadoId && produtoCustomizadoValor) {
         try {
@@ -28,6 +29,7 @@ function adicionaProdutoCustomizadoCarrinho() {
             pedidoItem.produtoCustomizado.cobertura = {};
             pedidoItem.produtoCustomizado.recheio = {};
             pedidoItem.produtoCustomizado.formato = {};
+            pedidoItem.produtoCustomizado.massa = {};
             pedidoItem.pedido = {};
 
             pedidoItem.produtoCustomizado.id = produtoCustomizadoId;
@@ -37,6 +39,7 @@ function adicionaProdutoCustomizadoCarrinho() {
             pedidoItem.produtoCustomizado.cobertura.nome = coberturaNome;
             pedidoItem.produtoCustomizado.recheio.nome = recheioNome;
             pedidoItem.produtoCustomizado.formato.nome = formatoNome;
+            pedidoItem.produtoCustomizado.massa.nome = massaNome;
             pedidoItem.quantidade = 1;
             pedidoItem.valor = produtoCustomizadoValor;
 

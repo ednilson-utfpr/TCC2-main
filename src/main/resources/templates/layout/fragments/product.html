@@ -7,7 +7,7 @@
         <div class=" product-image-wrapper">
             <div class="single-products">
                 <div class="productinfo text-center">
-                    <img th:src="${produto.imagem}" alt=""/>
+                    <img th:src="${produto.imagem}" alt="produtos"/>
                     <h2 th:text="'R$ ' + ${#numbers.formatDecimal(produto.valor,2,'POINT',2,'COMMA')}">
                         $56</h2>
                     <p th:text="${produto.nome}">nome</p>

@@ -30,7 +30,26 @@ $(document).ready(function () {
     });
 });
 
+
+//FILTRA OS PRODUTOS POR CATEGORIA
 function filtraCateg(element){
     let value = element.getAttribute('value');
     window.location = '/produto?categoria=' + value;
 }
+
+//ALTERAR ENDEREÇO ENTREGA - COM CHECK BOX
+var cb = $("#cbEnd");
+
+cb.on("click", function(){
+const name = document.querySelector("#endEnt");
+//const valor = name.value;
+const endECakes = "Retirar: Rua E-CAKES, nª 16 - Bairro: Centro - Pato Branco - PR";
+$("#endEnt").val(endECakes);
+});
+
+
+
+
+
+
+

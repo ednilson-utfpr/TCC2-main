@@ -32,6 +32,9 @@ public class ProdutoCustomizadoController {
     private PedidoItemService pedidoItemService;
 
     @Autowired
+    private MassaService massaService;
+
+    @Autowired
     private ProdutoCustomizadoService produtoCustomizadoService;
 
     @GetMapping
@@ -46,6 +49,7 @@ public class ProdutoCustomizadoController {
         carregarCombosCobertura(model);
         carregarCombosFormato(model);
         carregarCombosRecheio(model);
+        carregarCombosMassa(model);
         model.addAttribute("produtocustomizado", new ProdutoCustomizado());
 
         return "produtoCustomizado/form";
@@ -68,6 +72,7 @@ public class ProdutoCustomizadoController {
         attributes.addFlashAttribute("coberturaNome", produtocustomizado.getCobertura().getNome());
         attributes.addFlashAttribute("recheioNome", produtocustomizado.getRecheio().getNome());
         attributes.addFlashAttribute("formatoNome", produtocustomizado.getFormato().getNome());
+        attributes.addFlashAttribute("massaNome", produtocustomizado.getMassa().getNome());
         return "redirect:/index";
     }
 
@@ -79,6 +84,7 @@ public class ProdutoCustomizadoController {
         carregarCombosCobertura(model);
         carregarCombosFormato(model);
         carregarCombosRecheio(model);
+        carregarCombosMassa(model);
         return "produtoCustomizado/form";
     }
 
@@ -110,5 +116,10 @@ public class ProdutoCustomizadoController {
     //Carrega os combos na edição da tabela
     private void carregarCombosRecheio(Model model) {
         model.addAttribute("recheios", recheioService.findAll());
+    }
+
+    //Carrega os combos na edição da massa
+    private void carregarCombosMassa(Model model) {
+        model.addAttribute("massas", massaService.findAll());
     }
 }

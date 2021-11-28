@@ -99,6 +99,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
+                                        <label>E-Mail</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="${cliente.usuario.email}">10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
                                         <label>CPF</label>
                                     </div>
                                     <div class="col-md-6">
@@ -161,6 +169,19 @@
                                         <p th:text="${cliente.cep}">10$/hr</p>
                                     </div>
                                 </div>
+
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <td><a class="fa fa-pencil-square" aria-hidden="true" th:href="@{/clienteEndereco/{id}(id=${cliente.id})}">
+                                            Clique para atualizar os dados.</a></b> </td>
+
+                                    </div>
+                                </div>
+
+
+
+
                             </div>
                             <div th:if="${cliente == null}"
                                  class="jumbo-fluid display-4 text-center text-dark bg-light">

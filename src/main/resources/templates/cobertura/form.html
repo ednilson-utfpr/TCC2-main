@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <label for="valor">Valor</label>
                         <input type="text" class="form-control"
-                               th:field="*{valor}" style="width:auto"/>
+                               th:field="*{valor}" style="width:auto" pattern="^\d*(\.\d{0,2})?$"/>
                         <span th:if="${#fields.hasErrors('valor')}"
                               th:errors="*{valor}"
                               class="text-danger"

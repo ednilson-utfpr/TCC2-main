@@ -26,7 +26,7 @@
                     <div class="form-group">
                         <label for="recheio">Recheio</label>
                         <select class="form-control" onchange="atualizaValorProduto()"
-                                th:field="*{recheio}" style="width:auto" name="recheio">
+                                th:field="*{recheio}" style="width:auto" name="recheio" required >
                             <option value=""> (selecione)</option>
                             <option th:each="recheio: ${recheios}" th:value="${recheio.id}"
                                     th:text="${recheio}"></option>
@@ -43,7 +43,7 @@
                     <div class="form-group">
                         <label for="cobertura">Cobertura</label>
                         <select class="form-control" onchange="atualizaValorProduto()"
-                                th:field="*{cobertura}" style="width:auto">
+                                th:field="*{cobertura}" style="width:auto" required>
                             <option value=""> (selecione)</option>
                             <option th:each="cobertura: ${coberturas}" th:value="${cobertura.id}"
                                     th:text="${cobertura}"></option>
@@ -59,7 +59,7 @@
                     <div class="form-group">
                         <label for="formato">Formato</label>
                         <select class="form-control"
-                                th:field="*{formato}" style="width:auto">
+                                th:field="*{formato}" style="width:auto" required>
                             <option value=""> (selecione)</option>
                             <option th:each="formato: ${formatos}" th:value="${formato.id}"
                                     th:text="${formato.nome}"></option>
@@ -68,6 +68,22 @@
                               class="text-danger"></span>
                     </div>
                 </div>
+
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="massa">Massa</label>
+                        <select class="form-control" onchange="atualizaValorProduto()"
+                                th:field="*{massa}" style="width:auto" required>
+                            <option value=""> (selecione)</option>
+                            <option th:each="massa: ${massas}" th:value="${massa.id}"
+                                    th:text="${massa}"></option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('massa')}" th:errors="*{massa}"
+                              class="text-danger"></span>
+                    </div>
+                </div>
+
 
 
                 <div class="row">
@@ -110,9 +126,9 @@
 
 <th:block layout:fragment="javascript">
     <script type="text/javascript" th:src="@{/js/produtoCustomizado.js}"></script>
-
-
-
 </th:block>
+
+
+
 
 </html>

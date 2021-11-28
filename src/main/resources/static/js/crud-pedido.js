@@ -32,7 +32,7 @@ function criarLinhaProdutoCustomizado(pedidoItem) {
             <a href=""><img src="${pedidoItem.produtoCustomizado.imagem}" alt=""></a>
         </td>
         <td name="descricao" class="cart_description">
-            <h4><a href="">${pedidoItem.produtoCustomizado.cobertura.nome}, ${pedidoItem.produtoCustomizado.recheio.nome}, ${pedidoItem.produtoCustomizado.formato.nome}</a></h4>
+            <h4><a href="">${pedidoItem.produtoCustomizado.cobertura.nome}, ${pedidoItem.produtoCustomizado.recheio.nome}, ${pedidoItem.produtoCustomizado.formato.nome}, ${pedidoItem.produtoCustomizado.massa.nome}</a></h4>
             <p>Web ID: ${pedidoItem.produtoCustomizado.id}</p>
         </td>
         <td name="valor" class="cart_price">
@@ -124,10 +124,12 @@ function removeProdutoArray(id) {
     localStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
 }
 
+//FORMATA O VALOR P REAL
 function formatToReal(valor) {
     return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(valor);
 }
 
+//ATUALIZA O VALOR X QUANTIDADE
 function updateValue(input) {
     let row = input.parentElement.parentElement;
     let valor = row.getElementsByClassName('cart_price')[0].children[0].getAttribute('value');
@@ -140,7 +142,9 @@ function updateValue(input) {
 function updateLocalStorage(id, qtde) {
     let carrinho = JSON.parse(localStorage.getItem("carrinho"));
     carrinho.forEach(function (pedidoItem) {
-        if ((pedidoItem.produto && pedidoItem.produto.id !==id ) || (pedidoItem.produtoCustomizado && pedidoItem.produtoCustomizado.id != id))  {
+        if (pedidoItem.produto && pedidoItem.produto.id !==id ){
+            pedidoItem.quantidade = Number(qtde);
+        }else if( pedidoItem.produtoCustomizado && pedidoItem.produtoCustomizado.id != id)  {
             pedidoItem.quantidade = Number(qtde);
         }
     })
@@ -206,6 +210,7 @@ function finalizarPedido(urlDestino) {
         "pedidoItem": pedidoItem
     });
 
+    //MENSAGEM DE SUCESSO NO PEDIDO
     $.ajax({
         type: $('#frmPedido').attr('method'),
         url: $('#frmPedido').attr('action'),

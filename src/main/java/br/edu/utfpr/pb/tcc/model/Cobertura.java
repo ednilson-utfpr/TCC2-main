@@ -35,6 +35,7 @@ public class Cobertura implements Serializable {
 
     public String toString()
     {
+
         return getNome() + " -  Valor: R$" + getValor();
     }
 

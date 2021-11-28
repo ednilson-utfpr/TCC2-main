@@ -14,20 +14,20 @@
 
         <div class="row">
             <form th:action="@{/cliente}" method="post"
-                                 th:object="${cliente}">
+                  th:object="${cliente}">
                 <div class="row">
                     <div class="form-group">
                         <label for="id">Código </label>
                         <input type="text" class="form-control"
-                               th:field="*{id}"	readonly />
+                               th:field="*{id}" readonly/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="form-group">
-                        <label for="nome">Nome</label>
+                        <label for="nome">NOME</label>
                         <input type="text" class="form-control"
-                               th:field="*{nome}" />
+                               th:field="*{nome}"/>
                         <span th:if="${#fields.hasErrors('nome')}"
                               th:errors="*{nome}"
                               class="text-danger"
@@ -39,7 +39,7 @@
                     <div class="form-group">
                         <label for="cpf">CPF</label>
                         <input type="text" class="form-control"
-                               th:field="*{cpf}" />
+                               th:field="*{cpf}"/>
                         <span th:if="${#fields.hasErrors('cpf')}"
                               th:errors="*{cpf}"
                               class="text-danger"
@@ -49,9 +49,9 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label for="endereco">endereco</label>
+                        <label for="endereco">ENDEREÇO</label>
                         <input type="text" class="form-control"
-                               th:field="*{endereco}" />
+                               th:field="*{endereco}"/>
                         <span th:if="${#fields.hasErrors('endereco')}"
                               th:errors="*{endereco}"
                               class="text-danger"
@@ -62,7 +62,7 @@
                     <div class="form-group">
                         <label for="telefone">TELEFONE</label>
                         <input type="text" class="form-control"
-                               th:field="*{telefone}" />
+                               th:field="*{telefone}"/>
                         <span th:if="${#fields.hasErrors('telefone')}"
                               th:errors="*{telefone}"
                               class="text-danger"
@@ -73,7 +73,7 @@
                     <div class="form-group">
                         <label for="enderecoEntrega">ENDEREÇO ENTREGA</label>
                         <input type="text" class="form-control"
-                               th:field="*{enderecoEntrega}" />
+                               th:field="*{enderecoEntrega}" name="endEnt" id="endEnt"/>
                         <span th:if="${#fields.hasErrors('enderecoEntrega')}"
                               th:errors="*{enderecoEntrega}"
                               class="text-danger"
@@ -81,11 +81,22 @@
                     </div>
                 </div>
 
+
+                <div class="row">
+                    <input type="checkbox" name="active" id="cbEnd"/>
+                    <label> <i class="fa fa-hand-o-left" aria-hidden="true"></i><span id="cbEnd2"> RETIRAR NO LOCAL </span></label>
+
+                </div>
+
+
+                <!--
+                -->
+
                 <div class="row">
                     <div class="form-group">
                         <label for="bairro">BAIRRO</label>
                         <input type="text" class="form-control"
-                               th:field="*{bairro}" />
+                               th:field="*{bairro}"/>
                         <span th:if="${#fields.hasErrors('bairro')}"
                               th:errors="*{bairro}"
                               class="text-danger"
@@ -97,7 +108,7 @@
                     <div class="form-group">
                         <label for="estado">ESTADO</label>
                         <input type="text" class="form-control"
-                               th:field="*{estado}" />
+                               th:field="*{estado}"/>
                         <span th:if="${#fields.hasErrors('estado')}"
                               th:errors="*{estado}"
                               class="text-danger"
@@ -107,9 +118,9 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label for="cidade">Cidade</label>
+                        <label for="cidade">CIDADE</label>
                         <input type="text" class="form-control"
-                               th:field="*{cidade}" />
+                               th:field="*{cidade}"/>
                         <span th:if="${#fields.hasErrors('cidade')}"
                               th:errors="*{cidade}"
                               class="text-danger"
@@ -121,7 +132,7 @@
                     <div class="form-group">
                         <label for="cep">CEP</label>
                         <input type="text" class="form-control"
-                               th:field="*{cep}" />
+                               th:field="*{cep}"/>
                         <span th:if="${#fields.hasErrors('cep')}"
                               th:errors="*{cep}"
                               class="text-danger"
@@ -131,7 +142,7 @@
 
                 <div class="row">
                     <div class="form-group">
-                        <label for="usuario">Usuario</label>
+                        <label for="usuario">USUÁRIO</label>
                         <select class="form-control"
                                 th:field="*{usuario}">
                             <option value=""> (selecione)</option>
@@ -145,8 +156,8 @@
 
                 <div class="row">
                     <button class="btn btn-primary"
-                            type="submit" >Salvar</button>
-
+                            type="submit">Salvar
+                    </button>
                 </div>
             </form>
         </div>

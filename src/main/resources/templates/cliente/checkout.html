@@ -88,11 +88,15 @@
                             </tr>
 
                             <tr>
-                                <td><a class="fa fa-pencil-square" aria-hidden="true" th:href="@{/clienteEndereco/{id}(id=${cliente.id})}"> Clique aqui para mudar
-                                    o Endereço Entrega</a></b> </td>
+                                <td><span class="endEntregaAnima"></span><b> Endereço de Entrega</b></td>
                                 <td th:text="${cliente.enderecoEntrega}" >1</td>
 
-                           <tr>
+                            </tr>
+                                <td>
+                                    <a class="fa fa-pencil-square" aria-hidden="true" th:href="@{/clienteEndereco/{id}(id=${cliente.id})}" autofocus> Clique aqui para mudar
+                                        o Endereço Entrega</a>
+                                </td>
+                            <tr>
                                 <td><b>Cidade</b></td>
                                 <td th:text="${cliente.cidade}">1</td>
                             </tr>

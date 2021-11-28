@@ -3,6 +3,7 @@ package br.edu.utfpr.pb.tcc.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 @Data
 @AllArgsConstructor
@@ -16,8 +17,10 @@ public class Recheio implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "O campo não pode ser vazio!")
     @Column(length = 50, nullable = false)
     private String nome;
+
 
     @Column(nullable = false)
     private Double valor;

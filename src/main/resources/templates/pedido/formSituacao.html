@@ -123,11 +123,11 @@
           <div class="form-group">
             <label for="cliente">Cliente</label>
             <select class="form-control"
-                    th:field="*{cliente}" readonly style="width:auto" >
-              <option value=""> (selecione) </option>
+                    th:field="*{cliente}" style="width:auto" readonly="readonly" tabindex="-1" aria-disabled="true" >
+              <option value="" > (selecione) </option>
               <option th:each="cliente: ${clientes}"
                       th:value="${cliente.id}"
-                      th:text="${cliente.nome}" ></option>
+                      th:text="${cliente.nome}"></option>
             </select>
             <span th:if="${#fields.hasErrors('cliente')}" th:errors="*{cliente}"
                   class="text-danger"></span>

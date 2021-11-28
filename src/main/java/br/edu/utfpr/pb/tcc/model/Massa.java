@@ -22,11 +22,18 @@ public class Massa implements Serializable {
     private Long id;
 
     @NotNull(message = "O campo não pode ser vazio!")
-    @Column(length = 50, nullable = false)
+    @Column(length = 300, nullable = false)
     private String nome;
 
-   // @Column(nullable = false)
+    @NotNull(message = "O campo não pode ser vazio!")
+    @Column(nullable = false)
     private Double valor;
+
+    public String toString()
+    {
+        return getNome() + " - Valor: R$" + getValor();
+    }
+
 
 
 }

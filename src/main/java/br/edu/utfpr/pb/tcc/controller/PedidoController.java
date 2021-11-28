@@ -103,6 +103,7 @@ public class PedidoController {
 
         //ENVIA EMAIL COM STATUS DO PEDIDO
         sendMail(pedido.getCliente().getUsuario().getEmail(),
+                pedido.getCliente().getNome(),
                 pedido.getId().toString(),
                 pedido.getSituacao().getDescricao());
         //ENVIA EMAIL PEDIDO NOVO P/ O ADM DO SISTEMA
@@ -153,6 +154,7 @@ public class PedidoController {
         attributes.addFlashAttribute("sucesso", "Registro salvo com sucesso!");
 //ENVIA UM EMAIL COM A MODIFICAÇÃO DO STATUS DO PEDIDO
         sendMail(pedido.getCliente().getUsuario().getEmail(),
+                pedido.getCliente().getNome(),
                 pedido.getId().toString(),
                 pedido.getSituacao().getDescricao());
         return "redirect:/pedido";
@@ -173,14 +175,14 @@ public class PedidoController {
     private void carregarCombosSituacao(Model model) { model.addAttribute("situacoes", situacaoService.findAll());
     }
 
-//FUNÇÃO PARA ENVIAR - EMAIL
-    public String sendMail(@PathVariable String email, @PathVariable String nrPedido, @PathVariable String status){
+//FUNÇÃO PARA ENVIAR - EMAIL CLIENTE
+    public String sendMail(@PathVariable String email, @PathVariable String nome, @PathVariable String nrPedido, @PathVariable String status){
         try {
             MimeMessage mail = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper( mail );
             helper.setTo( email );
             helper.setSubject( "Pedido E-Cakes nr: " + nrPedido);
-            helper.setText("<h2><i>Olá Cliente! <i></h2>" + "Seu Pedido Número: " + nrPedido
+            helper.setText("<h2><i>Olá! " + nome +" <i></h2>" +"Seu Pedido Número: " + nrPedido
                     + ", se encontra com o seguinte status: "+ "<h2>" + status + "<h2>" , true);
             mailSender.send(mail);
 
